@@ -2,23 +2,14 @@
   <div>
     <h1>{{ title }}</h1>
 
-    <div class="input" >
-      <input v-model="campo" placeholder="Digite seu nome aqui:" /> {{aviso}}
-      
+    <div class="input">
+      <input v-model="campo" placeholder="Digite seu nome aqui:" /> {{ aviso }}
+
       <button @click="pushLista">Adicionar</button>
-            
-    
-        <h3> Nomes da Mesa:</h3>
-        <div v-for="item in items" :key="item.items">
-        
-        <p> {{item}}</p>
-        
-        </div>
-      
     </div>
 
     <div v-if="showRender">
-      <renderizar :text="text" />
+      <renderizar :text="text" :items="items" />
     </div>
 
     <div class="botao">
@@ -39,13 +30,11 @@ export default {
       text: "Informação do meu Componente",
       showRender: false,
       nomeBotao: "Mostrar Render",
-      items: ["Ingrid" ," Idair", " Paulo"],
-      campo:"",
-      aviso:"",
-      timer:null,
-      
-     
-    }
+      items: ["Ingrid"],
+      campo: "",
+      aviso: "",
+      timer: null,
+    };
   },
   methods: {
     mostrarRender() {
@@ -58,49 +47,42 @@ export default {
       }
     },
     pushLista() {
-
-      if(this.campo.length > 3){
-            this.items.push(this.campo)
-            alert("Nome adicionado com sucesso")
-      }else {
-        alert("Informe um nome com mais de 3 letras")
+      if (this.campo.length > 3) {
+        this.items.push(this.campo);
+        alert("Nome adicionado com sucesso");
+      } else {
+        alert("Informe um nome com mais de 3 letras");
       }
-      
-      
-      this.campo = ""
-      
-      
-      
+
+      this.campo = "";
     },
-    setarTime(){
-    this.aviso = "Aguardando..";
-    }
+    setarTime() {
+      this.aviso = "Aguardando..";
+    },
   },
-  watch:{
-    campo(){
-      this.aviso = "Digitando..."
+  watch: {
+    campo() {
+      this.aviso = "Digitando...";
 
-      
-      if(this.timer != null){
-          clearTimeout(this.timer);
+      if (this.timer != null) {
+        clearTimeout(this.timer);
       }
 
-      this.timer = setTimeout(this.setarTime, 1000)
-
-    }
-  }
+      this.timer = setTimeout(this.setarTime, 1000);
+    },
+  },
 };
 </script>
 
 <style scope>
 #app {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   text-align: center;
- 
 }
 
 .input {
- border: solid 4px #ccc;
+  border: solid 4px #ccc;
   margin: 50px;
   padding: 15px;
 }

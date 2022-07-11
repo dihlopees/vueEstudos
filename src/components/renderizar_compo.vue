@@ -4,7 +4,11 @@
       <h1>{{ title }}</h1>
       <p>{{ text }}</p>
 
-      
+        <h3> Nomes da Mesa:</h3>
+        <div v-for="item in items" :key="item.items">
+        
+        <p> {{item}}</p>
+        </div>
 
       <div class="iconeRedondos" :class="{dark}">
         <button @click="comprar">
@@ -29,7 +33,7 @@
 
 <script>
 export default {
-  props: ["text"],
+  props: ["text", "items"],
   data() {
     return {
       title: "aqui dentro fica meu componente",
