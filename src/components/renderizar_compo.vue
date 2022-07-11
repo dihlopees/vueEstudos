@@ -1,16 +1,15 @@
 <template>
-  <div class="backdroop"  >
-    <div class="modal" :class="{dark}"  >
+  <div class="backdroop">
+    <div class="modal" :class="{ dark }">
       <h1>{{ title }}</h1>
       <p>{{ text }}</p>
 
-        <h3> Nomes da Mesa:</h3>
-        <div v-for="item in items" :key="item.items">
-        
-        <p> {{item}}</p>
-        </div>
+      <h3>Nomes da Mesa:</h3>
+      <div v-for="item in items" :key="item.items">
+        <p>{{ item }}</p>
+      </div>
 
-      <div class="iconeRedondos" :class="{dark}">
+      <div class="iconeRedondos" :class="{ dark }">
         <button @click="comprar">
           <img src="../assets/imagens/batom.png" />
         </button>
@@ -25,8 +24,6 @@
       <div>
         <button @click="mudarTheme">Mood Dark</button>
       </div>
-
-      
     </div>
   </div>
 </template>
@@ -37,15 +34,14 @@ export default {
   data() {
     return {
       title: "aqui dentro fica meu componente",
-      dark:false,
-    
-    }
+      dark: false,
+    };
   },
-  methods:{
-    mudarTheme(){
-      this.dark = !this.dark
-    }
-  }
+  methods: {
+    mudarTheme() {
+      this.dark = !this.dark;
+    },
+  },
 };
 </script>
 
@@ -53,7 +49,6 @@ export default {
 .modal {
   background-color: bisque;
   color: rgb(41, 37, 37);
-  
 }
 
 .modal h1 {
@@ -67,11 +62,9 @@ export default {
   background-color: crimson;
 }
 
-
-.dark{
+.dark {
   background-color: black;
   color: white;
-
 }
 
 .dark button {
