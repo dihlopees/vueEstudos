@@ -1,6 +1,9 @@
 <template>
   <div class="nav">
-  <router-link to="/">Você esta em Home</router-link>
+  <router-link to="/">Home</router-link>
+  <router-link to="/shope">Shope</router-link>
+  <router-link to="/cadastro">Cadastro de Produto</router-link>
+ 
   
   </div>  
   <router-view />
@@ -21,13 +24,14 @@ export default {
   padding: 10px;
   background-color: crimson;
   width: 150px;
+  margin: 20px;
   
 }
 .nav{
-  margin-top:20px;
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(2,50%);
+  
+  padding: 50px;
+  
+  
   
 }
 

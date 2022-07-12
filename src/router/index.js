@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from '../pages/Home-page.vue'
+import Home from '../pages/Home-page.vue';
+import Shope from '../pages/Shope-page.vue'
+import Cadastro from '../pages/Cadastro-page.vue'
+
 
 
 const routes = [
@@ -7,7 +10,18 @@ const routes = [
         path:'/',
         name: 'Home',
         component: Home
+    },
+    {
+        path:'/shope',
+        name: 'Shope',
+        component: Shope
+    },
+    {
+        path:'/cadastro',
+        name:'Cadastro',
+        component: Cadastro
     }
+   
 
 ]
 

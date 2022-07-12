@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="homePage">
     <h1>{{ title }}</h1>
-
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis quisquam vitae quo blanditiis magni repellat tempora voluptatibus! Earum placeat, aspernatur in quis assumenda expedita sint, id magnam, quibusdam reiciendis temporibus!  </p>
     <div class="input">
       <input v-model="campo" placeholder="Digite seu nome aqui:" /> {{ aviso }}
 
@@ -12,8 +12,8 @@
       <renderizar :text="text" :items="items" />
     </div>
 
-    <div class="botao">
-      <button @click="mostrarRender">{{ nomeBotao }}</button>
+    <div >
+      <button class="mudar" @click="mostrarRender">{{ nomeBotao }}</button>
     </div>
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
   components: { renderizar },
   data() {
     return {
-      title: "Meu Root App",
+      title: "Meu Projeto de Estudos em Vue",
       text: "Informação do meu Componente",
       showRender: false,
       nomeBotao: "Mostrar Render",
@@ -87,10 +87,10 @@ export default {
   padding: 15px;
 }
 
-button {
+.homePage  button {
   height: 40px;
   border-radius: 30px;
   margin: 50px;
-  background-color: #ccc;
+  
 }
 </style>

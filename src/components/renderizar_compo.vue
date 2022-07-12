@@ -3,28 +3,27 @@
     <div class="modal" :class="{ dark }">
       <h1>{{ title }}</h1>
       <p>{{ text }}</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis aut laudantium reprehenderit, nemo architecto ipsum sit, dolor eveniet error temporibus consequatur labore beatae facere. Velit consectetur magnam unde nemo? Pariatur?</p>
+   
 
-      <h3>Nomes da Mesa:</h3>
-      <div v-for="item in items" :key="item.items">
+      
+
+      <div class="lista">
+        <h3>Nomes da Mesa:</h3>
+        <div v-for="item in items" :key="item.items">
         <p>{{ item }}</p>
+        </div>
+
+        
+
       </div>
 
-      <div class="iconeRedondos" :class="{ dark }">
-        <button @click="comprar">
-          <img src="../assets/imagens/batom.png" />
-        </button>
-        <button>
-          <img src="../assets/imagens/boca.png" />
-        </button>
-        <button>
-          <img src="../assets/imagens/flor.png" />
-        </button>
-      </div>
 
-      <div>
+      <div class="botaoMudar">
         <button @click="mudarTheme">Mood Dark</button>
       </div>
-    </div>
+   
+   </div>
   </div>
 </template>
 
@@ -49,6 +48,8 @@ export default {
 .modal {
   background-color: bisque;
   color: rgb(41, 37, 37);
+  display: grid;
+  grid-template-columns: repeat(2,50%);
 }
 
 .modal h1 {
@@ -58,8 +59,7 @@ export default {
 .iconeRedondos button {
   width: 50px;
   margin: 10px;
-  border-radius: 100px;
-  background-color: crimson;
+  
 }
 
 .dark {
@@ -67,7 +67,5 @@ export default {
   color: white;
 }
 
-.dark button {
-  background-color: #ccc;
-}
+
 </style>
