@@ -2,17 +2,17 @@
   <div class="listaProdutos">
     <h2>Lista de Produtos</h2>
 
-    <div v-for="item in lista" :key="item.lista" class="itemLoope">
+    <div v-for="item in info" :key="item.info" class="itemLoope">
       
       <div class="imgLoope">
-        <p> {{item.img}} </p>
+        <img src="{{item.imagem}}" />
       </div>
 
       <div class="infoProdutos">
         <h3> {{item.nome}} </h3>
         <p> {{item.marca}} </p>
         <h4> {{item.valor}}  </h4>
-        <p> {{item.cor}}  </p>
+        <p> {{item.cor.nome}}  </p>
       </div>
 
 
@@ -38,30 +38,38 @@
 </template>
 
 <script>
+  
+import api from "../api.js"
+
 
 export default {
   name: "Shope-page",
   data(){
     return {
-      lista:[
-        {
-          nome: "Camera 1",
-          marca: "Marca 1",
-          valor:100,
-          cor:"cor 1",
-          img:"imagem 1"
-        },
-        {
-          nome: "Camera 2",
-          marca: "Marca 2",
-          valor:200,
-          cor:"cor 2",
-          img:"imagem 2"
-        }
-      ]
+      info: null,
+      
     }
-  }
+  },
+  mounted(){
+      api
+      .get("/produtos")
+      .then(response => (this.info = response.data) )
+      .catch(error => console.log(error))
+  },
+  methods:{
+    conv(numero) {
+      return numero.parseFloat("pt-br", {
+              style: "currency",
+              currency: "BRL",
+            });
+    }
+  },
+
+
+
 }
+  
+
 
 
  
