@@ -1,11 +1,9 @@
 <template>
   <div class="nav">
-  <router-link to="/">Home</router-link>
-  <router-link to="/shope">Loja</router-link>
-  <router-link to="/cadastro">Cadastro de Produto</router-link>
- 
-  
-  </div>  
+    <router-link to="/">Home</router-link>
+    <router-link to="/shope">Loja</router-link>
+    <router-link to="/cadastro">Cadastro de Produto</router-link>
+  </div>
   <router-view />
 </template>
 
@@ -15,24 +13,19 @@ export default {
 };
 </script>
 
-<style scope>
-.nav a{
+<style>
+.nav a {
   text-decoration: none;
   border-radius: 10px;
-  color:white;
+  color: white;
   border: 1px solid crimson;
   padding: 10px;
   background-color: crimson;
   width: 150px;
   margin: 20px;
-  
 }
-.nav{
-  
-  padding: 50px;
-  
-  
-  
+.nav {
+  padding: 45px;
+  margin-right: 250px;
 }
-
 </style>
