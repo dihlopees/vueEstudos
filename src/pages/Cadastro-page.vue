@@ -1,11 +1,78 @@
 <template>
-    <div class="cadastroProdutos">
-        <form action="" method="post">
-            <label for="POST-name">Nome do Produto:</label>
-            <input id="POST-name" type="text" name="name">
-            <input type="submit" value="Save">
-          </form>
-        
+  <div class="cadastroProdutos">
+    <div class="tituloCadastro">
+      <h2>Cadastro de Produtos</h2>
     </div>
+
+    <div class="formulario">
+      <form action="" method="post">
+        <label for="POST-name">Nome do Produto:</label>
+        <input id="POST-name" type="text" name="name" required>
+
+        <label for="POST-name">Marca:</label>
+        <input id="POST-name" type="text" name="marca" required >
+
+        <label for="POST-name">Valor:</label>
+        <input id="POST-name" type="number" name="valor" required>
+
+        <label for="POST-name">Cor:</label>
+        <select name="select" required>
+            <option value="branco">Branco</option>
+            <option value="preto">Preto</option>
+            <option value="azul">Azul</option>
+        </select>
+
+ 
+
+        <label for="POST-name">Data:</label>
+        <input id="POST-name" type="date" name="data" required>
+
+        <button type="submit">Adicionar Produto</button>
+      </form>
+    </div>
+  </div>
 </template>
-        
+
+<style>
+.tituloCadastro {
+  display: grid;
+  text-align: left;
+  margin-left: 250px;
+}
+
+.formulario form {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  position: relative;
+ 
+  left:17%;
+  top:29%;
+}
+
+.formulario input {
+  margin: 10px;
+  height: 30px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.formulario select {
+  margin: 10px;
+  height: 30px;
+}
+
+.formulario button {
+  color:white;
+  border: 1px solid crimson;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: crimson;
+  width: 200px;
+  margin-top: 20px;
+}
+
+.formulario label{
+ text-align: left;
+ margin-left: 15px;
+}
+</style>
