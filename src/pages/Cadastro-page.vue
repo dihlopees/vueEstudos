@@ -26,6 +26,11 @@
 
         <label for="POST-name">Data:</label>
         <input id="POST-name" type="date" name="data" required>
+        
+        <div class="addimg">
+        <input  type="file" >
+          <img src="../assets/imagens/icone-adicionar-foto.svg" alt="adicionar foto" >
+        </div>
 
         <button type="submit">Adicionar Produto</button>
       </form>
@@ -74,5 +79,32 @@
 .formulario label{
  text-align: left;
  margin-left: 15px;
+}
+
+.addimg input{
+    cursor: pointer;
+    opacity: 0;
+    z-index: 1;
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    
+    
+   
+}
+
+.addimg img {
+    width: 120px;
+    height: 120px;
+    
+ 
+}
+
+.addimg{
+    display: flex;
+    flex-direction: column;
+    min-height: 15vh;
+    margin-left: 0px;
+    padding-top: 30px;
 }
 </style>
