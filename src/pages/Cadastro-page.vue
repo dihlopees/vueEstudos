@@ -5,13 +5,15 @@
     </div>
 
     <div class="formulario">
-      <form action="" method="post">
-        <label for="POST-name">Nome do Produto:</label>
-        <input id="POST-name" type="text" name="name" required>
+      <form >
+        <label>Nome do Produto:</label>
+        <input type="text" v-model="nome" required>
+          <p> {{nome}} </p>
+        <label>Marca:</label>
+        <input id="POST-name" type="text" v-model="marca" required >
 
-        <label for="POST-name">Marca:</label>
-        <input id="POST-name" type="text" name="marca" required >
 
+        <p> {{ marca }}</p>
         <label for="POST-name">Valor:</label>
         <input id="POST-name" type="number" name="valor" required>
 
@@ -32,17 +34,58 @@
           <img src="../assets/imagens/icone-adicionar-foto.svg" alt="adicionar foto" >
         </div>
 
-        <button type="submit">Adicionar Produto</button>
+        <button @click="enviarDados"  >Adicionar Produto</button>
       </form>
     </div>
   </div>
 </template>
 
+
+<script>
+import api from '../api.js'
+
+export default{
+  name:"Cadastro-page",
+  data(){
+    return{
+      nome:"",
+      marca:"",
+      valor:0,
+      cor:null,
+      imagem:"",
+      data:null,
+      
+    }
+  },
+  methods:{
+    enviarDados(){
+      api
+      .post("/produtos", {
+        nome: this.nome,
+        marca: this.marca,
+        valor: this.valor,
+        corid: this.cor,
+        imagem: this.imagem,
+        data: this.data,
+      })
+      .then(response => console.log(this.nome) )
+      .catch(error => console.log(error))
+    }
+
+  },
+
+}
+
+
+</script>
+
+
 <style>
 .tituloCadastro {
   display: grid;
   text-align: left;
-  margin-left: 250px;
+  margin-left: 220px;
+  padding: 15px;
 }
 
 .formulario form {
@@ -59,11 +102,17 @@
   margin: 10px;
   height: 30px;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding: 8px;
+  border-radius: 10px;
+  border: 2px solid grey;
 }
 
 .formulario select {
   margin: 10px;
-  height: 30px;
+  height: 45px;
+  border-radius: 10px;
+  border: 2px solid grey;
+  padding: 8px;
 }
 
 .formulario button {
