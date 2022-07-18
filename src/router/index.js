@@ -3,6 +3,7 @@ import Home from '../pages/Home-page.vue'
 import Shope from '../pages/Shope-page.vue'
 import Cadastro from '../pages/Cadastro-page.vue'
 import Editar from '../pages/Editar-page.vue'
+import Carrinho from '../pages/Carrinho-page.vue'
 
 
 
@@ -26,6 +27,11 @@ const routes = [
         path:'/editar',
         name:'Editar',
         component: Editar
+    },
+    {
+        path:'/carrinho',
+        name:'Carrinho',
+        component: Carrinho
     }
    
 

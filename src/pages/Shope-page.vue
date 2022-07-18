@@ -1,6 +1,7 @@
 <template>
   <div class="listaProdutos">
     <h2>Lista de Produtos</h2>
+  </div>
 
     <div v-for="item in info" :key="item.info" class="itemLoope">
       
@@ -17,14 +18,15 @@
 
 
       <div class="botaoCompras">
-        <button>
+        <router-link to="/editar" >
           <img src="../assets/imagens/icone-editar.svg" />
           
-        </button>
-        <button>
+        </router-link>
+        <router-link to="/carrinho"  >
           <img src="../assets/imagens/icone-carrinho.svg" />
-        </button>
-        <button>
+        </router-link>
+
+        <button @click="deleteProduct" >
           <img src="../assets/imagens/icone-deletar.svg" />
         </button>
       </div>
@@ -35,7 +37,7 @@
 
 
      
-  </div>
+  
 </template>
 
 <script>
@@ -63,35 +65,49 @@ export default {
               style: "currency",
               currency: "BRL",
             });
-    }
-  },
+    },
+    deleteProduct(){
+      api
+      .delete("/produtos")
+      .then(response => (this.info = response.data) )
+      .catch(error => console.log(error))
 
+    },
+    
+       
+  }
 
-
-}
-  
-
-
-
- 
+} 
 </script>
 
 <style>
-.botaoCompras button {
+.botaoCompras  router-link {
   background: transparent;
   border: 0;
 }
-.botaoCompras button img {
+.botaoCompras img {
   background: transparent;
   width: 50px;
   border: 30px;
+ 
+  
+
+  
 }
-.botaoCompras {
+.botaoCompras  {
   display: flex;
   flex-direction: row;
   justify-content: right;
   float: right;
   width: 100%;
+}
+
+.itemLoope{
+  display:flex;
+  width: 900px;
+  position: relative;
+  margin: 50px auto;
+  
 }
 
 

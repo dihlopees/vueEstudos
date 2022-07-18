@@ -26,11 +26,12 @@
         <input type="date" v-model="data" required />
 
         <div class="addimg">
-          <input type="file" />
+          <input  type="file" />
           <img
             src="../assets/imagens/icone-adicionar-foto.svg"
             alt="adicionar foto"
           />
+         
         </div>
 
         <button @click.prevent="enviarDados">Adicionar Produto</button>
@@ -68,6 +69,7 @@ export default {
         })
         .then((response) => {
             console.log("evento enviado")
+            console.log(" imagem:   " + this.imagem)
             this.nome = "",
             this.marca = "",
             this.valor = 0,
@@ -78,8 +80,9 @@ export default {
         )
         .catch((error) => console.log(error));
     },
-  },
-};
+} }
+  
+
 </script>
 
 <style>
