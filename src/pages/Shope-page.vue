@@ -19,6 +19,7 @@
       <div class="botaoCompras">
         <button>
           <img src="../assets/imagens/icone-editar.svg" />
+          
         </button>
         <button>
           <img src="../assets/imagens/icone-carrinho.svg" />

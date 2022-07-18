@@ -5,80 +5,82 @@
     </div>
 
     <div class="formulario">
-      <form >
+      <form>
         <label>Nome do Produto:</label>
-        <input type="text" v-model="nome" required>
-          <p> {{nome}} </p>
+        <input type="text" v-model="nome" required />
+
         <label>Marca:</label>
-        <input id="POST-name" type="text" v-model="marca" required >
+        <input type="text" v-model="marca" required />
 
-
-        <p> {{ marca }}</p>
-        <label for="POST-name">Valor:</label>
-        <input id="POST-name" type="number" name="valor" required>
-
-        <label for="POST-name">Cor:</label>
-        <select name="select" required>
-            <option value="branco">Branco</option>
-            <option value="preto">Preto</option>
-            <option value="azul">Azul</option>
+        <label>Valor:</label>
+        <input type="number" v-model="valor" required />
+       
+        <label>Cor:</label>
+        <select v-model="cor" required>
+          <option value="1">Branco</option>
+          <option value="2">Preto</option>
+          <option value="3">Azul</option>
         </select>
 
- 
+        <label>Data:</label>
+        <input type="date" v-model="data" required />
 
-        <label for="POST-name">Data:</label>
-        <input id="POST-name" type="date" name="data" required>
-        
         <div class="addimg">
-        <input  type="file" >
-          <img src="../assets/imagens/icone-adicionar-foto.svg" alt="adicionar foto" >
+          <input type="file" />
+          <img
+            src="../assets/imagens/icone-adicionar-foto.svg"
+            alt="adicionar foto"
+          />
         </div>
 
-        <button @click="enviarDados"  >Adicionar Produto</button>
+        <button @click.prevent="enviarDados">Adicionar Produto</button>
       </form>
     </div>
   </div>
 </template>
 
-
 <script>
-import api from '../api.js'
+import api from "../api.js";
 
-export default{
-  name:"Cadastro-page",
-  data(){
-    return{
-      nome:"",
-      marca:"",
-      valor:0,
-      cor:null,
-      imagem:"",
-      data:null,
-      
-    }
+export default {
+  name: "Cadastro-page",
+  data() {
+    return {
+      nome: "",
+      marca: "",
+      valor: 0,
+      cor: 0,
+      imagem: "",
+      data: null,
+    };
   },
-  methods:{
-    enviarDados(){
+  methods: {
+    enviarDados() {
       api
-      .post("/produtos", {
-        nome: this.nome,
-        marca: this.marca,
-        valor: this.valor,
-        corid: this.cor,
-        imagem: this.imagem,
-        data: this.data,
-      })
-      .then(response => console.log(this.nome) )
-      .catch(error => console.log(error))
-    }
-
+        .post("/produtos", {
+          nome: this.nome,
+          marca: this.marca,
+          valor: this.valor,
+          corid: this.cor,
+          imagem: this.imagem,
+          data: this.data,
+          
+        })
+        .then((response) => {
+            console.log("evento enviado")
+            this.nome = "",
+            this.marca = "",
+            this.valor = 0,
+            this.cor = 0,
+            this.imagem = "",
+            this.data = null
+          }
+        )
+        .catch((error) => console.log(error));
+    },
   },
-
-}
-
-
+};
 </script>
-
 
 <style>
 .tituloCadastro {
@@ -93,15 +95,16 @@ export default{
   flex-direction: column;
   width: 600px;
   position: relative;
- 
-  left:17%;
-  top:29%;
+
+  left: 17%;
+  top: 29%;
 }
 
 .formulario input {
   margin: 10px;
   height: 30px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   padding: 8px;
   border-radius: 10px;
   border: 2px solid grey;
@@ -116,7 +119,7 @@ export default{
 }
 
 .formulario button {
-  color:white;
+  color: white;
   border: 1px solid crimson;
   border-radius: 10px;
   padding: 10px;
@@ -125,35 +128,30 @@ export default{
   margin-top: 20px;
 }
 
-.formulario label{
- text-align: left;
- margin-left: 15px;
+.formulario label {
+  text-align: left;
+  margin-left: 15px;
 }
 
-.addimg input{
-    cursor: pointer;
-    opacity: 0;
-    z-index: 1;
-    width: 90px;
-    height: 90px;
-    position: absolute;
-    
-    
-   
+.addimg input {
+  cursor: pointer;
+  opacity: 0;
+  z-index: 1;
+  width: 90px;
+  height: 90px;
+  position: absolute;
 }
 
 .addimg img {
-    width: 120px;
-    height: 120px;
-    
- 
+  width: 120px;
+  height: 120px;
 }
 
-.addimg{
-    display: flex;
-    flex-direction: column;
-    min-height: 15vh;
-    margin-left: 0px;
-    padding-top: 30px;
+.addimg {
+  display: flex;
+  flex-direction: column;
+  min-height: 15vh;
+  margin-left: 0px;
+  padding-top: 30px;
 }
 </style>

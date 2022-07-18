@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from '../pages/Home-page.vue';
+import Home from '../pages/Home-page.vue'
 import Shope from '../pages/Shope-page.vue'
 import Cadastro from '../pages/Cadastro-page.vue'
+import Editar from '../pages/Editar-page.vue'
 
 
 
@@ -20,6 +21,11 @@ const routes = [
         path:'/cadastro',
         name:'Cadastro',
         component: Cadastro
+    },
+    {
+        path:'/editar',
+        name:'Editar',
+        component: Editar
     }
    
 
