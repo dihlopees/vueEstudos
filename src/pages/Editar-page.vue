@@ -13,7 +13,7 @@
           <input type="text" v-model="marca" required />
   
           <label>Valor:</label>
-          <input type="number" v-model="valor" required />
+          <input type="text" v-model="valor" required />
          
           <label>Cor:</label>
           <select v-model="cor" required>
@@ -23,7 +23,7 @@
           </select>
   
           <label>Data:</label>
-          <input type="date" v-model="data" required />
+          <input type="date" v-model="date" required />
   
           <div class="addimg">
             <input type="file" />
@@ -51,19 +51,35 @@
         valor: 0,
         cor: 0,
         imagem: "",
-        data: null,
+        date: null,
+        id: this.$route.params.id
       };
+    },
+    mounted(){
+      api
+      .get("/produtos/" + this.id )
+      .then(response =>{ this.nome = response.data.nome
+      this.marca = response.data.marca 
+      this.valor = response.data.valor
+      this.cor = response.data.corid
+      this.date = response.data.data }
+      
+      
+      
+      
+      )
+      .catch(error => console.log(error))
     },
     methods: {
       enviarDados() {
         api
-          .put("/produtos", {
+          .put("/produtos/"+this.id , {
             nome: this.nome,
             marca: this.marca,
             valor: this.valor,
             corid: this.cor,
             imagem: this.imagem,
-            data: this.data,
+            data: this.date,
           })
           .then((response) => console.log(this.nome))
           .catch((error) => console.log(error));

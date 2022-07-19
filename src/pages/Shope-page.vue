@@ -23,7 +23,7 @@
 
 
       <div class="botaoCompras">
-        <button @click="$router.push('editar')"  >
+        <button @click="$router.push('editar/'+ item.id)"  >
           <img src="../assets/imagens/icone-editar.svg" />
           
         </button>
