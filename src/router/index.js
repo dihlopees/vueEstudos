@@ -32,7 +32,8 @@ const routes = [
         path:'/produtos/:id',
         name:'Carrinho',
         component: Carrinho
-    }
+    },
+    
    
 
 ]

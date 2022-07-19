@@ -24,11 +24,11 @@
 
           <h4>Quantidade:</h4>
 
-          <button>
+          <button @click="count++">
             <img src="../assets/icones/mais.svg">
           </button>
           <p> {{count }} </p>
-          <button>
+          <button @click="count--" >
             <img src="../assets/icones/menos.svg">
           </button>
 
