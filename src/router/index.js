@@ -29,7 +29,7 @@ const routes = [
         component: Editar
     },
     {
-        path:'/carrinho',
+        path:'/produtos/:id',
         name:'Carrinho',
         component: Carrinho
     }

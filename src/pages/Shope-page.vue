@@ -14,6 +14,10 @@
         <h4> {{item.nome}} </h4>
         <p> {{item.marca}} </p>
         <h2> {{item.valor}}  </h2>
+        <!-- <h2>  {{ parseFloat(item.valor, "pt-br",{style: "currency",
+          currency: "BRL",})   }}</h2> -->
+
+    
         <p> Cor: {{item.cor.nome}}  </p>
       </div>
 
@@ -24,7 +28,7 @@
           
         </button>
 
-        <button @click="$router.push('carrinho') " >
+        <button @click="$router.push('produtos/'+ item.id) " >
           <img src="../assets/imagens/icone-carrinho.svg" />
         </button>
 
@@ -44,6 +48,7 @@
 
 <script>
   
+
 import api from "../api.js"
 
 
@@ -78,6 +83,9 @@ export default {
     },
     
        
+  },
+  computed:{
+    
   }
 
 } 
