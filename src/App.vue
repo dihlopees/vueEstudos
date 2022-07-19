@@ -1,8 +1,8 @@
 <template>
   <div class="nav">
     <router-link to="/">Home</router-link>
-    <router-link to="/shope">Loja</router-link>
-    <router-link to="/cadastro">Cadastro de Produto</router-link>
+    <router-link :to="{name: 'Shope'}">Loja</router-link>
+    <router-link :to="{name: 'Cadastro'}">Cadastro de Produto</router-link>
   </div>
   <router-view />
 </template>
@@ -27,5 +27,9 @@ export default {
 .nav {
   padding: 45px;
   
+}
+
+* {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 </style>

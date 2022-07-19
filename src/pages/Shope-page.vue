@@ -1,6 +1,6 @@
 <template>
   <div class="listaProdutos">
-    <h2>Lista de Produtos</h2>
+    <h1>Lista de Produtos</h1>
   </div>
 
     <div v-for="item in info" :key="item.info" class="itemLoope">
@@ -10,21 +10,22 @@
       </div>
 
       <div class="infoProdutos">
-        <h3> {{item.nome}} </h3>
+        <h4> {{item.nome}} </h4>
         <p> {{item.marca}} </p>
-        <h4> {{item.valor}}  </h4>
-        <p> {{item.cor.nome}}  </p>
+        <h2> {{item.valor}}  </h2>
+        <p> Cor: {{item.cor.nome}}  </p>
       </div>
 
 
       <div class="botaoCompras">
-        <router-link to="/editar" >
+        <button @click="$router.push('editar')"  >
           <img src="../assets/imagens/icone-editar.svg" />
           
-        </router-link>
-        <router-link to="/carrinho"  >
+        </button>
+
+        <button @click="$router.push('carrinho') " >
           <img src="../assets/imagens/icone-carrinho.svg" />
-        </router-link>
+        </button>
 
         <button @click="deleteProduct" >
           <img src="../assets/imagens/icone-deletar.svg" />
@@ -81,7 +82,7 @@ export default {
 </script>
 
 <style>
-.botaoCompras  router-link {
+.botaoCompras  button {
   background: transparent;
   border: 0;
 }
@@ -89,9 +90,7 @@ export default {
   background: transparent;
   width: 50px;
   border: 30px;
- 
-  
-
+  margin: 10px;
   
 }
 .botaoCompras  {
@@ -108,6 +107,16 @@ export default {
   position: relative;
   margin: 50px auto;
   
+}
+
+.infoProdutos{
+  text-align: left;
+  margin: 10px;
+  width: 700px;
+}
+
+.infoProdutos h2{
+  color: #0F4C81;
 }
 
 
