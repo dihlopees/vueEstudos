@@ -6,7 +6,8 @@
     <div v-for="item in info" :key="item.info" class="itemLoope">
       
       <div class="imgLoope">
-        <img src="{{item.imagem}}" />
+        <img :src="item.imagem" />
+
       </div>
 
       <div class="infoProdutos">
@@ -51,6 +52,7 @@ export default {
   data(){
     return {
       info: null,
+      
       
     }
   },
@@ -117,6 +119,15 @@ export default {
 
 .infoProdutos h2{
   color: #0F4C81;
+}
+
+.imgLoope{
+  margin: 25px;
+  display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: flex-end;
+    justify-content: center;
 }
 
 

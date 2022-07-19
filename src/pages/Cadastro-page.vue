@@ -14,7 +14,7 @@
 
         <label>Valor:</label>
         <input type="number" v-model="valor" required />
-       
+
         <label>Cor:</label>
         <select v-model="cor" required>
           <option value="1">Branco</option>
@@ -26,12 +26,11 @@
         <input type="date" v-model="data" required />
 
         <div class="addimg">
-          <input  type="file" />
+          <input type="file" @beforeinput="handleFile" />
           <img
             src="../assets/imagens/icone-adicionar-foto.svg"
             alt="adicionar foto"
           />
-         
         </div>
 
         <button @click.prevent="enviarDados">Adicionar Produto</button>
@@ -53,6 +52,7 @@ export default {
       cor: 0,
       imagem: "",
       data: null,
+      tipo: "data:image/png;base64,"
     };
   },
   methods: {
@@ -65,24 +65,40 @@ export default {
           corid: this.cor,
           imagem: this.imagem,
           data: this.data,
-          
         })
         .then((response) => {
-            console.log("evento enviado")
-            console.log(" imagem:   " + this.imagem)
-            this.nome = "",
-            this.marca = "",
-            this.valor = 0,
-            this.cor = 0,
-            this.imagem = "",
-            this.data = null
-          }
-        )
+          console.log("evento enviado");
+          console.log(" imagem:   " + this.imagem);
+          (this.nome = ""),
+            (this.marca = ""),
+            (this.valor = 0),
+            (this.cor = 0),
+            (this.imagem = ""),
+            (this.data = null);
+        })
         .catch((error) => console.log(error));
     },
-} }
-  
+    handleFile(event) {
+      transFileparaBase(event.target.files[0]);
+    },
+    transFileparaBase(file) {
+      file.text().then(() => {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          const document = reader.result;
 
+          this.imagem(
+            document.slice(document.lastIndexOf(",") + 1, document.length)
+          );
+          console.log(
+            document.slice(document.lastIndexOf(",") + 1, document.length)
+          );
+        };
+      });
+    },
+  },
+};
 </script>
 
 <style>
