@@ -4,9 +4,7 @@
       <h1>Carrinho</h1>
 
       <div class="quadradoGrande">
-
         <div class="itemQuadrado">
-
           <div class="imgQuadadro">
             <img :src="imagem" />
           </div>
@@ -16,24 +14,21 @@
             <p>{{ marca }}</p>
             <p>Cor: {{ cor }}</p>
           </div>
-
         </div>
 
-        <hr id="hr"/>
+        <hr id="hr" />
         <div class="quantidadeEvalor">
-
           <h4>Quantidade:</h4>
 
           <button @click="count++">
-            <img src="../assets/icones/mais.svg">
+            <img src="../assets/icones/mais.svg" />
           </button>
-          <p> {{count }} </p>
-          <button @click="count--" >
-            <img src="../assets/icones/menos.svg">
+          <p>{{ count }}</p>
+          <button v-if="count >=1" @click="count--">
+            <img src="../assets/icones/menos.svg" />
           </button>
 
-          <h3>{{valor}}</h3>
-
+          <h3>{{ valor }}</h3>
         </div>
       </div>
     </div>
@@ -41,31 +36,33 @@
     <div class="tituloPedido">
       <h1>Resumo do Pedido</h1>
 
-        <div class="subtotal">
+      <div class="subtotal">
+        <div class="numeros">
+          <h4>Subtotal {{ count }} itens</h4>
 
-          <div class="numeros"> 
-            <h4> Subtotal {{count}} itens  </h4>
-            <hr/>
-            <h4> Frete </h4>
-            <hr/>
-            <h4> Valor Total </h4>
-         </div>
+          <h4>Frete</h4>
 
-         <div class="botaoPagar">
-          <button>
-            Pagar
-          </button>
-         </div>
-
+          <h4>Valor Total</h4>
         </div>
+
+        <div class="calculos">
+          <h4>{{ valorTotal }}</h4>
+
+          <h4>{{ frete }}</h4>
+
+          <h4>{{ somaFinal }}</h4>
+        </div>
+
+        <div class="botaoPagar">
+          <button>Pagar</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import api from "../api.js"
-
-
+import api from "../api.js";
 
 export default {
   name: "Carrinho-page",
@@ -78,8 +75,6 @@ export default {
       imagem: "",
       id: this.$route.params.id,
       count: 1,
-      
-      
     };
   },
   mounted() {
@@ -94,80 +89,97 @@ export default {
       })
       .catch((error) => console.log(error));
   },
+  computed: {
+    valorTotal() {
+      return this.valor * this.count;
+    },
+    frete() {
+      return this.valorTotal * 0.1;
+    },
+    somaFinal() {
+      return this.valorTotal + this.frete;
+    },
+  },
 };
 </script>
 
 <style>
-  .todos{
-    display: grid;
-    grid-template-columns: repeat(2, 60% 40%);
-  }
+.todos {
+  display: grid;
+  grid-template-columns: repeat(2, 60% 40%);
+}
 
-  .quadradoGrande{
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    margin: 50px;
-  }
-  .itemQuadrado {
-    display: grid;
-    grid-template-columns: repeat(2, 30% 70%);
-    padding: 20px;
-  }
-  .infoQuadrado{
-    text-align: left;
-    
-  }
-  #hr{
-    margin: 10px;
-    border: solid 1px #ccc;
-  }
-  .quantidadeEvalor{
-    display: flex;
-    flex-direction:row;
-    justify-content: space-between;
-    padding: 20px;
-    margin: 10px;
-  }
-  .quantidadeEvalor h3{
-    color: #0F4C81;
-  }
-  .quantidadeEvalor button{
-    background: transparent;
-    border: 0;
-  }
-  .quantidadeEvalor p{
-    border: 1px solid black;
-    padding: 10px;
-    border-radius: 10px;
-    width: 50px;
-  }
-  .subtotal {
-    background-color: #F5F5F5;
-    margin: 50px;
-    border-radius: 10px;
-    height: 330px;
-  }
-  .tituloCarrinho h1 {
-    text-align: left;
-    margin-left: 80px;
-  }
-  .numeros{
-    padding: 20px;
-  }
-  .botaoPagar button{
-    border-radius: 10px;
-    color: white;
-    background-color: crimson;
-    border: 0;
-    padding: 10px;
-    width: 300px;
-    margin-top:20px;
-    font-size: 18px;
-   
-  }
-  .botaoPagar{
-    display: contents;
-    width: 300px;
-   
-  }
+.quadradoGrande {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin: 50px;
+}
+.itemQuadrado {
+  display: grid;
+  grid-template-columns: repeat(2, 30% 70%);
+  padding: 20px;
+}
+.infoQuadrado {
+  text-align: left;
+}
+#hr {
+  margin: 10px;
+  border: solid 1px #ccc;
+}
+.quantidadeEvalor {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 10px;
+}
+.quantidadeEvalor h3 {
+  color: #0f4c81;
+}
+.quantidadeEvalor button {
+  background: transparent;
+  border: 0;
+}
+.quantidadeEvalor p {
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 10px;
+  width: 50px;
+}
+.subtotal {
+  background-color: #f5f5f5;
+  margin: 50px;
+  border-radius: 10px;
+  height: 330px;
+}
+.tituloCarrinho h1 {
+  text-align: left;
+  margin-left: 80px;
+}
+.numeros h4 {
+  padding: 20px;
+}
+.botaoPagar button {
+  border-radius: 10px;
+  color: white;
+  background-color: crimson;
+  border: 0;
+  padding: 10px;
+  width: 300px;
+  margin-bottom: 15px;
+  font-size: 18px;
+  margin-left: 80px;
+}
+.botaoPagar {
+  display: contents;
+  width: 300px;
+  
+}
+.subtotal {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+}
+.calculos h4 {
+  padding: 20px;
+}
 </style>

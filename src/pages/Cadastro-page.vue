@@ -67,6 +67,7 @@ export default {
           data: this.data,
         })
         .then((response) => {
+          alert("Produto Cadastrado com sucesso")
           console.log("evento enviado");
           console.log(" imagem:   " + this.imagem);
           (this.nome = ""),

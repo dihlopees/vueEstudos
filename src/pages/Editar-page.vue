@@ -13,7 +13,7 @@
           <input type="text" v-model="marca" required />
   
           <label>Valor:</label>
-          <input type="text" v-model="valor" required />
+          <input type="number" v-model="valor" required />
          
           <label>Cor:</label>
           <select v-model="cor" required>
