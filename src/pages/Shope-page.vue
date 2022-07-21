@@ -12,11 +12,7 @@
       <div class="infoProdutos">
         <h4>{{ item.nome }}</h4>
         <p>{{ item.marca }}</p>
-        <h2>{{ item.valor }}</h2>
-       
-        <!-- <h2>  {{ parseFloat(item.valor, "pt-br",{style: "currency",
-          currency: "BRL",})   }}</h2> -->
-
+        <h2> R$ {{ item.valor }}</h2>
         <p>Cor: {{ item.cor.nome }}</p>
       </div>
 
@@ -55,12 +51,7 @@ export default {
       .catch((error) => console.log(error));
   },
   methods: {
-    conv(numero) {
-      return numero.parseFloat("pt-br", {
-        style: "currency",
-        currency: "BRL",
-      });
-    },
+    
     deleteProduct(id) {
       api
         .delete("/produtos/"+ id)
@@ -71,7 +62,14 @@ export default {
         .catch((error) => console.log(error));
     },
   },
-  computed: {},
+  computed: {
+    conv(numero) {
+      return numero.parseFloat("pt-br", {
+        style: "currency",
+        currency: "BRL",
+      });
+    },
+  },
 };
 </script>
 

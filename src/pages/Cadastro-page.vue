@@ -26,11 +26,14 @@
         <input type="date" v-model="data" required />
 
         <div class="addimg">
-          <input type="file" @beforeinput="handleFile" />
+          <input type="file" @change="handleFile" />
           <img
             src="../assets/imagens/icone-adicionar-foto.svg"
             alt="adicionar foto"
           />
+          <p>
+            <img :src="imagem" />
+          </p>
         </div>
 
         <button @click.prevent="enviarDados">Adicionar Produto</button>
@@ -69,8 +72,8 @@ export default {
         .then((response) => {
           alert("Produto Cadastrado com sucesso")
           console.log("evento enviado");
-          console.log(" imagem:   " + this.imagem);
-          (this.nome = ""),
+         
+            (this.nome = ""),
             (this.marca = ""),
             (this.valor = 0),
             (this.cor = 0),
@@ -79,27 +82,43 @@ export default {
         })
         .catch((error) => console.log(error));
     },
-    handleFile(event) {
-      transFileparaBase(event.target.files[0]);
-    },
-    transFileparaBase(file) {
-      file.text().then(() => {
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-          const document = reader.result;
+    handleFile: function () {    
+      var file = document
+        .querySelector('input[type=file]')
+        .files[0];
+      var reader = new FileReader()
+      reader.onload = function(e) {
+        this.imagem = e.target.result             
+      };
+      reader.onerror = function(error) {
+        alert(error);
+      };
+      reader.readAsDataURL(file);      
+    }
+  }
 
-          this.imagem(
-            document.slice(document.lastIndexOf(",") + 1, document.length)
-          );
-          console.log(
-            document.slice(document.lastIndexOf(",") + 1, document.length)
-          );
-        };
-      });
-    },
-  },
-};
+
+    // handleFile(event) {
+    //   transFileparaBase(event.target.files[0]);
+    // },
+    // transFileparaBase(file) {
+    //   file.text().then(() => {
+    //     let reader = new FileReader();
+    //     reader.readAsDataURL(file);
+    //     reader.onloadend = () => {
+    //       const document = reader.result;
+
+    //       this.imagem(
+    //         document.slice(document.lastIndexOf(",") + 1, document.length)
+    //       );
+    //       console.log(
+    //         document.slice(document.lastIndexOf(",") + 1, document.length)
+    //       );
+    //     };
+    //   });
+    // },
+  }
+
 </script>
 
 <style>

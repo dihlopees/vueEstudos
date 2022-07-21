@@ -20,15 +20,23 @@
         <div class="quantidadeEvalor">
           <h4>Quantidade:</h4>
 
-          <button @click="count++">
-            <img src="../assets/icones/mais.svg" />
-          </button>
-          <p>{{ count }}</p>
-          <button v-if="count >=1" @click="count--">
+          <button v-show="count <=1  ? dis === true : dis === false" @click="count--" :disabled="dis">
             <img src="../assets/icones/menos.svg" />
           </button>
 
-          <h3>{{ valor }}</h3>
+
+          <p>{{ count }}</p>
+          
+          <button @click="count++">
+            <img src="../assets/icones/mais.svg" />
+          </button>  
+
+
+
+
+         
+
+          <h3> R$ {{ valor }}</h3>
         </div>
       </div>
     </div>
@@ -46,11 +54,11 @@
         </div>
 
         <div class="calculos">
-          <h4>{{ valorTotal }}</h4>
+          <h4> R$ {{ valorTotal.toFixed(2) }}</h4>
+          
+          <h4> R$ {{ frete.toFixed(2) }}</h4>
 
-          <h4>{{ frete }}</h4>
-
-          <h4>{{ somaFinal }}</h4>
+          <h4> R$ {{ somaFinal.toFixed(2) }}</h4>
         </div>
 
         <div class="botaoPagar">
@@ -83,7 +91,8 @@ export default {
       imagem: "",
       id: this.$route.params.id,
       count: 1,
-      mostrarPagar: false
+      mostrarPagar: false,
+      dis:false
     };
   },
   mounted() {

@@ -1,164 +1,169 @@
 <template>
-    <div class="cadastroProdutos">
-      <div class="tituloCadastro">
-        <h2>Editar Produtos</h2>
-      </div>
-  
-      <div class="formulario">
-        <form>
-          <label>Nome do Produto:</label>
-          <input type="text" v-model="nome" required />
-  
-          <label>Marca:</label>
-          <input type="text" v-model="marca" required />
-  
-          <label>Valor:</label>
-          <input type="number" v-model="valor" required />
-         
-          <label>Cor:</label>
-          <select v-model="cor" required>
-            <option value="1">Branco</option>
-            <option value="2">Preto</option>
-            <option value="3">Azul</option>
-          </select>
-  
-          <label>Data:</label>
-          <input type="date" v-model="date" required />
-  
-          <div class="addimg">
-            <input type="file" />
-            <img
-              src="../assets/imagens/icone-adicionar-foto.svg"
-              alt="adicionar foto"
-            />
-          </div>
-  
-          <button @click="enviarDados">Salvar Produto</button>
-        </form>
-      </div>
+  <div class="cadastroProdutos">
+    <div class="tituloCadastro">
+      <h2>Editar Produtos</h2>
     </div>
-  </template>
-  
-  <script>
-  import api from "../api.js";
-  
-  export default {
-    name: "Editar-page",
-    data() {
-      return {
-        nome: "",
-        marca: "",
-        valor: 0,
-        cor: 0,
-        imagem: "",
-        date: null,
-        id: this.$route.params.id
-      };
-    },
-    mounted(){
+
+    <div class="formulario">
+      <form>
+        <label>Nome do Produto:</label>
+        <input type="text" v-model="nome" required />
+
+        <label>Marca:</label>
+        <input type="text" v-model="marca" required />
+
+        <label>Valor:</label>
+        <input type="number" v-model="valor" required />
+
+        <label>Cor:</label>
+        <select v-model="cor" required>
+          <option value="1">Branco</option>
+          <option value="2">Preto</option>
+          <option value="3">Azul</option>
+        </select>
+
+        <label>Data:</label>
+        <input type="date" v-model="date" required />
+
+        <div class="addimg" >
+          <input type="file"  />
+          <img 
+            src="../assets/imagens/icone-adicionar-foto.svg"
+            alt="adicionar foto"
+          />
+          <p class="img">
+            <img :src="imagem" />
+          </p>
+        </div>
+
+        <button @click="enviarDados">Salvar Produto</button>
+      </form>
+    </div>
+  </div>
+</template>
+
+<script>
+import api from "../api.js";
+
+export default {
+  name: "Editar-page",
+  data() {
+    return {
+      nome: "",
+      marca: "",
+      valor: 0,
+      cor: 0,
+      imagem: "",
+      date: null,
+      id: this.$route.params.id,
+    };
+  },
+  mounted() {
+    api
+      .get("/produtos/" + this.id)
+      .then((response) => {
+        this.nome = response.data.nome;
+        this.marca = response.data.marca;
+        this.valor = response.data.valor;
+        this.cor = response.data.corid;
+        this.date = response.data.data;
+        this.imagem = response.data.imagem;
+      })
+      .catch((error) => console.log(error));
+  },
+  methods: {
+    enviarDados() {
       api
-      .get("/produtos/" + this.id )
-      .then(response =>{ this.nome = response.data.nome
-      this.marca = response.data.marca 
-      this.valor = response.data.valor
-      this.cor = response.data.corid
-      this.date = response.data.data }
-      
-      
-      
-      
-      )
-      .catch(error => console.log(error))
+        .put("/produtos/" + this.id, {
+          nome: this.nome,
+          marca: this.marca,
+          valor: this.valor,
+          corid: this.cor,
+          imagem: this.imagem,
+          data: this.date,
+        })
+        .then((response) => console.log(this.nome))
+        .catch((error) => console.log(error));
     },
-    methods: {
-      enviarDados() {
-        api
-          .put("/produtos/"+this.id , {
-            nome: this.nome,
-            marca: this.marca,
-            valor: this.valor,
-            corid: this.cor,
-            imagem: this.imagem,
-            data: this.date,
-          })
-          .then((response) => console.log(this.nome))
-          .catch((error) => console.log(error));
-      },
-    },
-  };
-  </script>
+  },
+};
+</script>
+
+<style>
+.tituloCadastro {
+  display: grid;
+  text-align: left;
+  margin-left: 220px;
+  padding: 15px;
+}
+
+.formulario form {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  position: relative;
+
+  left: 17%;
+  top: 29%;
+}
+
+.formulario input {
+  margin: 10px;
+  height: 30px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  padding: 8px;
+  border-radius: 10px;
+  border: 2px solid grey;
+}
+
+.formulario select {
+  margin: 10px;
+  height: 45px;
+  border-radius: 10px;
+  border: 2px solid grey;
+  padding: 8px;
+}
+
+.formulario button {
+  color: white;
+  border: 1px solid crimson;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: crimson;
+  width: 200px;
+  margin-top: 20px;
+}
+
+.formulario label {
+  text-align: left;
+  margin-left: 15px;
+}
+
+.addimg input {
+  cursor: pointer;
+  opacity: 0;
+  z-index: 1;
+  width: 90px;
+  height: 90px;
+  position: absolute;
+}
+
+.addimg img {
+  width: 120px;
+  height: 120px;
+}
+
+.addimg {
+  display: flex;
+  flex-direction: column;
+  min-height: 15vh;
+  margin-left: 0px;
+  padding-top: 30px;
+}
+
+.img {
+  display:grid;
   
-  <style>
-  .tituloCadastro {
-    display: grid;
-    text-align: left;
-    margin-left: 220px;
-    padding: 15px;
-  }
-  
-  .formulario form {
-    display: flex;
-    flex-direction: column;
-    width: 600px;
-    position: relative;
-  
-    left: 17%;
-    top: 29%;
-  }
-  
-  .formulario input {
-    margin: 10px;
-    height: 30px;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-    padding: 8px;
-    border-radius: 10px;
-    border: 2px solid grey;
-  }
-  
-  .formulario select {
-    margin: 10px;
-    height: 45px;
-    border-radius: 10px;
-    border: 2px solid grey;
-    padding: 8px;
-  }
-  
-  .formulario button {
-    color: white;
-    border: 1px solid crimson;
-    border-radius: 10px;
-    padding: 10px;
-    background-color: crimson;
-    width: 200px;
-    margin-top: 20px;
-  }
-  
-  .formulario label {
-    text-align: left;
-    margin-left: 15px;
-  }
-  
-  .addimg input {
-    cursor: pointer;
-    opacity: 0;
-    z-index: 1;
-    width: 90px;
-    height: 90px;
-    position: absolute;
-  }
-  
-  .addimg img {
-    width: 120px;
-    height: 120px;
-  }
-  
-  .addimg {
-    display: flex;
-    flex-direction: column;
-    min-height: 15vh;
-    margin-left: 0px;
-    padding-top: 30px;
-  }
-  </style>
-  
+}
+</style>
