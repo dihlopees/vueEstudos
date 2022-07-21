@@ -7,7 +7,7 @@
 
       <button @click="pushLista">Adicionar</button>
     </div>
-
+    
     <div v-if="showRender">
       <renderizar :text="text" :items="items" />
     </div>

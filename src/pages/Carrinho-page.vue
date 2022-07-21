@@ -54,18 +54,26 @@
         </div>
 
         <div class="botaoPagar">
-          <button>Pagar</button>
+          <button @click="mostrarPagar = true" >Pagar</button>
         </div>
       </div>
     </div>
   </div>
+
+   <div>
+    <pagar v-if="mostrarPagar" :somaFinal="somaFinal"  />
+
+  </div>
 </template>
 
 <script>
-import api from "../api.js";
+import api from "../api.js"
+import pagar from "../components/pagar-compo.vue"
+
 
 export default {
   name: "Carrinho-page",
+  components: {pagar},
   data() {
     return {
       nome: "",
@@ -75,6 +83,7 @@ export default {
       imagem: "",
       id: this.$route.params.id,
       count: 1,
+      mostrarPagar: false
     };
   },
   mounted() {
@@ -99,8 +108,8 @@ export default {
     somaFinal() {
       return this.valorTotal + this.frete;
     },
-  },
-};
+  }
+}
 </script>
 
 <style>
