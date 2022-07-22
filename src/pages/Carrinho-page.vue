@@ -20,7 +20,7 @@
         <div class="quantidadeEvalor">
           <h4>Quantidade:</h4>
 
-          <button v-show="count <=1  ? dis === true : dis === false" @click="count--" :disabled="dis">
+          <button v-show="count <1  ? dis === true : dis === false" @click="count--" :disabled="dis">
             <img src="../assets/icones/menos.svg" />
           </button>
 

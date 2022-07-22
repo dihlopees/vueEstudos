@@ -13,10 +13,10 @@
         <input type="text" v-model="marca" required />
 
         <label>Valor:</label>
-        <input type="number" v-model="valor" required />
+        <input type="number" v-model="valor"  required />
 
         <label>Cor:</label>
-        <select v-model="cor" required>
+        <select v-model="cor" required> 
           <option value="1">Branco</option>
           <option value="2">Preto</option>
           <option value="3">Azul</option>
@@ -25,16 +25,22 @@
         <label>Data:</label>
         <input type="date" v-model="data" required />
 
+        <div class="posicaoimagem"> 
         <div class="addimg">
           <input type="file" @change="handleFile" />
           <img
             src="../assets/imagens/icone-adicionar-foto.svg"
             alt="adicionar foto"
           />
-          <p>
-            <img :src="imagem" />
-          </p>
+
+         
         </div>
+
+        <div v-if="imagem != null" class="renderizarImagem" > 
+          <img :src="imagem" />
+        </div>
+
+      </div>
 
         <button @click.prevent="enviarDados">Adicionar Produto</button>
       </form>
@@ -47,6 +53,7 @@ import api from "../api.js";
 
 export default {
   name: "Cadastro-page",
+
   data() {
     return {
       nome: "",
@@ -55,7 +62,7 @@ export default {
       cor: 0,
       imagem: "",
       data: null,
-      tipo: "data:image/png;base64,"
+      tipo: "data:image/png;base64,",
     };
   },
   methods: {
@@ -70,55 +77,38 @@ export default {
           data: this.data,
         })
         .then((response) => {
-          alert("Produto Cadastrado com sucesso")
+          alert("Produto Cadastrado com sucesso");
           console.log("evento enviado");
-         
-            (this.nome = ""),
+
+          (this.nome = ""),
             (this.marca = ""),
             (this.valor = 0),
             (this.cor = 0),
             (this.imagem = ""),
             (this.data = null);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+          console.log(error);
+          alert("Erro ao cadastrar produto");
+        });
     },
-    handleFile: function () {    
-      var file = document
-        .querySelector('input[type=file]')
-        .files[0];
-      var reader = new FileReader()
-      reader.onload = function(e) {
-        this.imagem = e.target.result             
-      };
-      reader.onerror = function(error) {
-        alert(error);
-      };
-      reader.readAsDataURL(file);      
-    }
-  }
 
+    transFileparaBase(file) {
+      file.text().then(() => {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          const document = reader.result;
+          this.imagem = document;
+        };
+      });
+    },
 
-    // handleFile(event) {
-    //   transFileparaBase(event.target.files[0]);
-    // },
-    // transFileparaBase(file) {
-    //   file.text().then(() => {
-    //     let reader = new FileReader();
-    //     reader.readAsDataURL(file);
-    //     reader.onloadend = () => {
-    //       const document = reader.result;
-
-    //       this.imagem(
-    //         document.slice(document.lastIndexOf(",") + 1, document.length)
-    //       );
-    //       console.log(
-    //         document.slice(document.lastIndexOf(",") + 1, document.length)
-    //       );
-    //     };
-    //   });
-    // },
-  }
-
+    handleFile(event) {
+      this.transFileparaBase(event.target.files[0]);
+    },
+  },
+};
 </script>
 
 <style>
@@ -188,9 +178,19 @@ export default {
 
 .addimg {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   min-height: 15vh;
   margin-left: 0px;
   padding-top: 30px;
+}
+
+.posicaoimagem{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  
+}
+.renderizarImagem{
+  padding: 25px;
 }
 </style>

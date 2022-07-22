@@ -25,16 +25,21 @@
         <label>Data:</label>
         <input type="date" v-model="date" required />
 
+
+        <div class="envolverImagens"> 
         <div class="addimg" >
           <input type="file"  />
           <img 
             src="../assets/imagens/icone-adicionar-foto.svg"
             alt="adicionar foto"
           />
-          <p class="img">
+
+          <div class="img">
             <img :src="imagem" />
-          </p>
+          </div>
+
         </div>
+      </div>
 
         <button @click="enviarDados">Salvar Produto</button>
       </form>
@@ -81,8 +86,13 @@ export default {
           corid: this.cor,
           imagem: this.imagem,
           data: this.date,
+
         })
-        .then((response) => console.log(this.nome))
+        .then((response) => 
+        { alert("Produto Editado com sucesso!")
+          console.log(response)}
+        
+        )
         .catch((error) => console.log(error));
     },
   },
@@ -155,15 +165,19 @@ export default {
 }
 
 .addimg {
-  display: flex;
-  flex-direction: column;
   min-height: 15vh;
   margin-left: 0px;
   padding-top: 30px;
+  align-items: center;
 }
 
-.img {
-  display:grid;
-  
+.envolverImagens{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.img{
+  padding: 25px;
 }
 </style>
