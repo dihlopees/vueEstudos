@@ -5,7 +5,7 @@
     </div>
 
     <div class="formulario">
-      <form>
+      <form @submit="enviarDados" >
         <label>Nome do Produto:</label>
         <input type="text" v-model="nome" required />
 
@@ -27,7 +27,7 @@
 
         <div class="envolverImagens">
           <div class="addimg">
-            <input type="file" />
+            <input type="file" required />
             <img
               src="../assets/imagens/icone-adicionar-foto.svg"
               alt="adicionar foto"
@@ -39,7 +39,7 @@
           </div>
         </div>
 
-        <button @click="enviarDados">Salvar Produto</button>
+        <button type="submit" >Salvar Produto</button>
       </form>
     </div>
   </div>
@@ -89,7 +89,10 @@ export default {
           alert("Produto Editado com sucesso!");
           console.log(response);
         })
-        .catch((error) => console.log(error));
+        .catch((error) => 
+        { alert("Erro ao Editar produto")
+        console.log(error)}
+        );
     },
   },
 };

@@ -5,7 +5,7 @@
     </div>
 
     <div class="formulario">
-      <form>
+      <form @submit.prevent="enviarDados">
         <label>Nome do Produto:</label>
         <input type="text" v-model="nome" required />
 
@@ -27,7 +27,7 @@
 
         <div class="posicaoimagem">
           <div class="addimg">
-            <input type="file" @change="handleFile" />
+            <input type="file" @change="handleFile" required />
             <img
               src="../assets/imagens/icone-adicionar-foto.svg"
               alt="adicionar foto"
@@ -39,7 +39,7 @@
           </div>
         </div>
 
-        <button @click.prevent="enviarDados">Adicionar Produto</button>
+        <button type="submit"  >Adicionar Produto</button>
       </form>
     </div>
   </div>
