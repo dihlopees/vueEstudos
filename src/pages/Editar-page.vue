@@ -25,21 +25,19 @@
         <label>Data:</label>
         <input type="date" v-model="date" required />
 
+        <div class="envolverImagens">
+          <div class="addimg">
+            <input type="file" />
+            <img
+              src="../assets/imagens/icone-adicionar-foto.svg"
+              alt="adicionar foto"
+            />
 
-        <div class="envolverImagens"> 
-        <div class="addimg" >
-          <input type="file"  />
-          <img 
-            src="../assets/imagens/icone-adicionar-foto.svg"
-            alt="adicionar foto"
-          />
-
-          <div class="img">
-            <img :src="imagem" />
+            <div class="img">
+              <img :src="imagem" />
+            </div>
           </div>
-
         </div>
-      </div>
 
         <button @click="enviarDados">Salvar Produto</button>
       </form>
@@ -86,13 +84,11 @@ export default {
           corid: this.cor,
           imagem: this.imagem,
           data: this.date,
-
         })
-        .then((response) => 
-        { alert("Produto Editado com sucesso!")
-          console.log(response)}
-        
-        )
+        .then((response) => {
+          alert("Produto Editado com sucesso!");
+          console.log(response);
+        })
         .catch((error) => console.log(error));
     },
   },
@@ -171,13 +167,13 @@ export default {
   align-items: center;
 }
 
-.envolverImagens{
+.envolverImagens {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-.img{
+.img {
   padding: 25px;
 }
 </style>

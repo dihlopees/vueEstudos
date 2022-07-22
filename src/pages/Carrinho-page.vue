@@ -20,23 +20,21 @@
         <div class="quantidadeEvalor">
           <h4>Quantidade:</h4>
 
-          <button v-show="count <1  ? dis === true : dis === false" @click="count--" :disabled="dis">
+          <button
+            v-show="count < 1 ? dis === true : dis === false"
+            @click="count--"
+            :disabled="dis"
+          >
             <img src="../assets/icones/menos.svg" />
           </button>
 
-
           <p>{{ count }}</p>
-          
+
           <button @click="count++">
             <img src="../assets/icones/mais.svg" />
-          </button>  
+          </button>
 
-
-
-
-         
-
-          <h3> R$ {{ valor }}</h3>
+          <h3>R$ {{ valor }}</h3>
         </div>
       </div>
     </div>
@@ -54,34 +52,32 @@
         </div>
 
         <div class="calculos">
-          <h4> R$ {{ valorTotal.toFixed(2) }}</h4>
-          
-          <h4> R$ {{ frete.toFixed(2) }}</h4>
+          <h4>R$ {{ valorTotal.toFixed(2) }}</h4>
 
-          <h4> R$ {{ somaFinal.toFixed(2) }}</h4>
+          <h4>R$ {{ frete.toFixed(2) }}</h4>
+
+          <h4>R$ {{ somaFinal.toFixed(2) }}</h4>
         </div>
 
         <div class="botaoPagar">
-          <button @click="mostrarPagar = true" >Pagar</button>
+          <button @click="mostrarPagar = true">Pagar</button>
         </div>
       </div>
     </div>
   </div>
 
-   <div>
-    <pagar v-if="mostrarPagar" :somaFinal="somaFinal"  />
-
+  <div>
+    <pagar v-if="mostrarPagar" :somaFinal="somaFinal" />
   </div>
 </template>
 
 <script>
-import api from "../api.js"
-import pagar from "../components/pagar-compo.vue"
-
+import api from "../api.js";
+import pagar from "../components/pagar-compo.vue";
 
 export default {
   name: "Carrinho-page",
-  components: {pagar},
+  components: { pagar },
   data() {
     return {
       nome: "",
@@ -92,7 +88,7 @@ export default {
       id: this.$route.params.id,
       count: 1,
       mostrarPagar: false,
-      dis:false
+      dis: false,
     };
   },
   mounted() {
@@ -117,8 +113,8 @@ export default {
     somaFinal() {
       return this.valorTotal + this.frete;
     },
-  }
-}
+  },
+};
 </script>
 
 <style>
@@ -191,7 +187,6 @@ export default {
 .botaoPagar {
   display: contents;
   width: 300px;
-  
 }
 .subtotal {
   display: grid;

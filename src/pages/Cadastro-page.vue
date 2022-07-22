@@ -13,10 +13,10 @@
         <input type="text" v-model="marca" required />
 
         <label>Valor:</label>
-        <input type="number" v-model="valor"  required />
+        <input type="number" v-model="valor" required />
 
         <label>Cor:</label>
-        <select v-model="cor" required> 
+        <select v-model="cor" required>
           <option value="1">Branco</option>
           <option value="2">Preto</option>
           <option value="3">Azul</option>
@@ -25,22 +25,19 @@
         <label>Data:</label>
         <input type="date" v-model="data" required />
 
-        <div class="posicaoimagem"> 
-        <div class="addimg">
-          <input type="file" @change="handleFile" />
-          <img
-            src="../assets/imagens/icone-adicionar-foto.svg"
-            alt="adicionar foto"
-          />
+        <div class="posicaoimagem">
+          <div class="addimg">
+            <input type="file" @change="handleFile" />
+            <img
+              src="../assets/imagens/icone-adicionar-foto.svg"
+              alt="adicionar foto"
+            />
+          </div>
 
-         
+          <div v-if="imagem != null" class="renderizarImagem">
+            <img :src="imagem" />
+          </div>
         </div>
-
-        <div v-if="imagem != null" class="renderizarImagem" > 
-          <img :src="imagem" />
-        </div>
-
-      </div>
 
         <button @click.prevent="enviarDados">Adicionar Produto</button>
       </form>
@@ -62,7 +59,6 @@ export default {
       cor: 0,
       imagem: "",
       data: null,
-      tipo: "data:image/png;base64,",
     };
   },
   methods: {
@@ -78,7 +74,7 @@ export default {
         })
         .then((response) => {
           alert("Produto Cadastrado com sucesso");
-          console.log("evento enviado");
+          console.log(response);
 
           (this.nome = ""),
             (this.marca = ""),
@@ -184,13 +180,12 @@ export default {
   padding-top: 30px;
 }
 
-.posicaoimagem{
+.posicaoimagem {
   display: flex;
   flex-direction: row;
   align-items: center;
-  
 }
-.renderizarImagem{
+.renderizarImagem {
   padding: 25px;
 }
 </style>

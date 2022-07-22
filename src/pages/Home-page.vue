@@ -1,18 +1,23 @@
 <template>
   <div class="homePage">
     <h1>{{ title }}</h1>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis quisquam vitae quo blanditiis magni repellat tempora voluptatibus! Earum placeat, aspernatur in quis assumenda expedita sint, id magnam, quibusdam reiciendis temporibus!  </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Omnis quisquam
+      vitae quo blanditiis magni repellat tempora voluptatibus! Earum placeat,
+      aspernatur in quis assumenda expedita sint, id magnam, quibusdam
+      reiciendis temporibus!
+    </p>
     <div class="input">
       <input v-model="campo" placeholder="Digite seu nome aqui:" /> {{ aviso }}
 
       <button @click="pushLista">Adicionar</button>
     </div>
-    
+
     <div v-if="showRender">
       <renderizar :text="text" :items="items" />
     </div>
 
-    <div >
+    <div>
       <button class="mudar" @click="mostrarRender">{{ nomeBotao }}</button>
     </div>
   </div>
@@ -87,10 +92,9 @@ export default {
   padding: 15px;
 }
 
-.homePage  button {
+.homePage button {
   height: 40px;
   border-radius: 30px;
   margin: 50px;
-  
 }
 </style>

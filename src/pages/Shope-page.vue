@@ -12,7 +12,7 @@
       <div class="infoProdutos">
         <h4>{{ item.nome }}</h4>
         <p>{{ item.marca }}</p>
-        <h2> R$ {{ item.valor }}</h2>
+        <h2>R$ {{ item.valor }}</h2>
         <p>Cor: {{ item.cor.nome }}</p>
       </div>
 
@@ -30,7 +30,7 @@
         </button>
       </div>
     </div>
-    <!-- fim da div laço de repetição -->
+
   </div>
 </template>
 
@@ -51,14 +51,13 @@ export default {
       .catch((error) => console.log(error));
   },
   methods: {
-    
     deleteProduct(id) {
       api
-        .delete("/produtos/"+ id)
-        .then((response) => {alert("Produto Deletado")
-        window.location.reload()
-        
-      })
+        .delete("/produtos/" + id)
+        .then((response) => {
+          alert("Produto Deletado");
+          window.location.reload();
+        })
         .catch((error) => console.log(error));
     },
   },
